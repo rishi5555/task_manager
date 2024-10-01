@@ -1,0 +1,29 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <h2>Your Categories</h2>
+  <a class="btn btn-primary mb-3" href="{% url 'category_create' %}">Add New Category</a>
+  <table class="table table-bordered">
+    <thead class="thead-light">
+        <tr>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for category in categories %}
+            <tr>
+                <td>{{ category.name }}</td>
+                <td>
+                    <a class="btn btn-warning btn-sm" href="{% url 'category_edit' category.pk %}">Edit</a>
+                    <form action="{% url 'category_delete' category.pk %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
+

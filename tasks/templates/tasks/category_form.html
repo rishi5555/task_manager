@@ -1,0 +1,13 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <h2>{% if form.instance.pk %}Edit{% else %}New{% endif %} Category</h2>
+  <form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        {{ form.as_p|safe }}
+    </div>
+    <button class="btn btn-primary" type="submit">Save</button>
+  </form>
+  <a class="btn btn-secondary mt-2" href="{% url 'category_list' %}">Cancel</a>
+{% endblock %}
